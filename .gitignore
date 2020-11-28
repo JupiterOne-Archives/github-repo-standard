@@ -1,0 +1,26 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables file
+.env
+
+.vscode
+
+.git/
+node_modules/
+test/integration/data/output
+dist/
+*.log
+*.bak.js
+*.bak
+.DS_STORE
+dump.rdb
+

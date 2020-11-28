@@ -1,0 +1,68 @@
+{
+  "alertSlack": true,
+  "public": {
+    "licenses": {
+      "mandatory": {
+        "enforcement_policy": "notify",
+        "repo_exceptions": []
+      },
+      "allowed": {
+        "enforcement_policy": "notify",
+        "approvedKeys": [
+          "mit",
+          "mpl-2.0",
+          "cc-by-sa-4.0"
+        ],
+        "repo_exceptions": []
+      }
+    },
+    "vulnerabilityChecks": {
+      "enforcement_policy": "remediate",
+      "repo_exceptions": []
+    },
+    "defaultBranchProtections": {
+      "enforcement_policy": "disabled",
+      "repo_exceptions": [],
+      "protections": {
+        "enforce_admins": false,
+        "required_pull_request_reviews": {
+          "dismiss_stale_reviews": true,
+          "require_code_owner_reviews": false,
+          "required_approving_review_count": 1
+        },
+        "required_linear_history": false,
+        "allow_force_pushes": false,
+        "allow_deletions": false
+      }
+    }
+  },
+  "private": {
+    "licenses": {
+      "mandatory": {
+        "enforcement_policy": "disabled"
+      },
+      "allowed": {
+        "enforcement_policy": "disabled"
+      }
+    },
+    "vulnerabilityChecks": {
+      "enforcement_policy": "remediate",
+      "repo_exceptions": []
+    },
+    "defaultBranchProtections": {
+      "enforcement_policy": "remediate",
+      "repo_exceptions": [],
+      "protections": {
+        "enforce_admins": false,
+        "required_pull_request_reviews": {
+          "dismiss_stale_reviews": true,
+          "require_code_owner_reviews": false,
+          "required_approving_review_count": 1
+        },
+        "required_linear_history": false,
+        "allow_force_pushes": false,
+        "allow_deletions": false
+      }
+    }
+  }
+}
