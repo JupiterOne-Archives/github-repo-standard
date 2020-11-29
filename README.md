@@ -1,29 +1,49 @@
-# bitbucket-repo-standard
+# github-repo-standard
 
-Add various standard BitBucket settings across a user or team using BitBucket's public API: https://developer.atlassian.com/bitbucket/api/2/reference/
+Enforce various standard GitHub repository configuration settings across a
+GitHub organization.
 
 ## Supported Repo Checks
 
-* Owner
-* Is Private or Public
-* Fork Policy
+* License (mandatory?, one of allowed types?)
+* Vulnerability Alerts Enabled?
+* Branch Protection Checks?
 
-## Supported Repo Entities
+See [examples/policy.json](./examples/policy.json) to get a better idea of what is checked for.
 
-* Branch Restrictions: e.g. `master` cannot be rebased, ...
-* Web Hooks: e.g. `#dev-feed` chat channel webhook, ...
+## Custom Repo Checks
 
-## Current Configuration
+In addition to the checks provided here, you can pass your own array of `async` check functions in as an optional parameter to the `enforceGitHubPolicy` function. These will be called during script execution, and can contribute to findings and/or remediation activity. See [examples/customCheck.js](./examples/customCheck.js) for an example of one such check.
 
-The configuration applied to reposistories are listed here in the [company-standard.yaml file](https://bitbucket.org/jupiterone/bitbucket-repo-standard/src/master/company-standard.yml?at=master&fileviewer=file-view-default#company-standard.yml-29).
+## Suggested Usage
 
-Example rules that can be specified in `company-standard.yaml`:
+```javascript
+const enforce = require('@jupiterone/github-repo-standard');
+const policy = require('@jupiterone/github-repo-standard/examples/policy.json');
+const org = 'myCompany';
 
-* Post new and updated PRs to the #dev-feed slack channel via webhook.
-* Restrict direct commits into `master`.
-* Restrict history rewrites of `master`.
-* Restrict deletion of `master`.
-* Turn on PR requirements:
-  * 1 approval to merge
-  * 1 successfull build
-  * all PR tasks completed
+enforce(org, policy).catch(console.error);
+```
+
+or with optional custom checks:
+
+```javascript
+const enforce = require('@jupiterone/github-repo-standard');
+const policy = require('@jupiterone/github-repo-standard/examples/policy.json');
+const { checkJenkinsfile } = require('@jupiterone/github-repo-standard/examples/customCheck.json');
+const org = 'myCompany';
+
+enforce(org, policy, [checkJenkinsfile]).catch(console.error);
+```
+
+## Configuration
+
+You will need to create a new GitHub app for use with this script, and set the following Environment variables:
+
+* `GITHUB_APP_ID`
+* `GITHUB_APP_INSTALLATION_ID`
+* `GITHUB_APP_PRIVATE_KEY`
+
+The private key is in PEM format. If you'd rather not load that into an env var and you can trust the filesystem the script is being executed on, the script also supports a `GITHUB_APP_PRIVATE_KEY_FILE`, which should be a fully qualified path to the PEM file.
+
+For additional details see the [GitHub App Authentication documentation](https://docs.github.com/en/github-ae@latest/developers/apps/authenticating-with-github-apps).

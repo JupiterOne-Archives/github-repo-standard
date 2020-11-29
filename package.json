@@ -1,9 +1,12 @@
 {
-  "name": "bitbucket-repo-standard",
-  "version": "1.0.0",
-  "description": "TBD",
-  "license": "UNLICENSED",
+  "name": "github-repo-standard",
+  "version": "0.1.0",
+  "description": "Policy-based enforcement of repo configuration for your GitHub org.",
+  "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "examples/*"
+  ],
   "scripts": {
     "prelint": "yarn",
     "lint": "eslint src test",
@@ -14,10 +17,8 @@
     "@octokit/auth-app": "^2.10.1",
     "@octokit/plugin-throttling": "^3.3.3",
     "@octokit/rest": "^18.0.9",
-    "bottleneck": "^2.19.5",
     "js-yaml": "^3.8.1",
     "lodash": "^4.17.4",
-    "luxon": "^1.19.3",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",
     "walk-object": "^4.0.0"

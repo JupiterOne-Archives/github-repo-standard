@@ -3,15 +3,6 @@ const _ = require('lodash');
 const { sendToSlack, blockFormat } = require('./slack');
 const utils = require('./enforcementUtils');
 
-// TODO: consider future support for:
-// required status checks
-// enable automated security fixes
-// allow forking for private repos?
-// consider approved GHA allowlist
-// check for autolink references
-// security policy for public repos?
-// alert on public issue count over threshold
-
 async function enforceGitHubPolicy (org, policy, customChecks = []) {
   const { allRepos } = await getOrgRepos(org);
   await enforceRepoPolicy(org, policy, allRepos, customChecks);
@@ -197,5 +188,6 @@ async function getBranchProtectionSettings (org, repo) {
 }
 
 module.exports = {
-  enforceGitHubPolicy
+  enforceGitHubPolicy,
+  enforceRepoPolicy
 };
