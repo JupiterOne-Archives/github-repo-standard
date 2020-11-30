@@ -1,5 +1,5 @@
 {
-  "name": "github-repo-standard",
+  "name": "@jupiterone/github-repo-standard",
   "version": "0.1.0",
   "description": "Policy-based enforcement of repo configuration for your GitHub org.",
   "license": "MIT",
