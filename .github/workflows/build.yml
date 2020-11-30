@@ -51,14 +51,14 @@ jobs:
       - name: Check if publish needed
         run: |
           name="$(jq -r .name package.json)"
-          npmver="$(npm show $name version || echo v0.0.0)"
+          npmver="$(npm show $name version 2>/dev/null || echo v0.0.0)"
           pkgver="$(jq -r .version package.json)"
           if [ "$npmver" = "$pkgver" ]
           then
             echo "Package version ($pkgver) is the same as last published NPM version ($npmver), skipping publish."
           else
             echo "Package version ($pkgver) is different from latest NPM version ($npmver), publishing!"
-            echo "::set-env name=publish::true"
+            echo "publish=true" >> $GITHUB_ENV
           fi
       - name: Publish
         if: env.publish == 'true'
