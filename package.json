@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "description": "Policy-based enforcement of repo configuration for your GitHub org.",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "index.js",
+  "private": false,
   "files": [
-    "examples/*"
+    "examples/*",
+    "src/*"
   ],
   "scripts": {
     "prelint": "yarn",
