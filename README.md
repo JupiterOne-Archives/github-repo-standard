@@ -47,3 +47,7 @@ You will need to create a new GitHub app for use with this script, and set the f
 The private key is in PEM format. If you'd rather not load that into an env var and you can trust the filesystem the script is being executed on, the script also supports a `GITHUB_APP_PRIVATE_KEY_FILE`, which should be a fully qualified path to the PEM file.
 
 For additional details see the [GitHub App Authentication documentation](https://docs.github.com/en/github-ae@latest/developers/apps/authenticating-with-github-apps).
+
+If you set `alertSlack: true` in your policy, you will need to set:
+
+* `SLACK_URL` - webhook URL
